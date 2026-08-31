@@ -53,7 +53,7 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projetos" className="relative isolate overflow-hidden py-20 md:py-28">
+    <section id="projetos" className="relative isolate overflow-hidden py-20 md:py-28 scroll-mt-20 md:scroll-mt-24">
       <div
         aria-hidden
         className="absolute right-[-8%] bottom-0 h-96 w-96 rounded-full bg-primary/8 blur-[130px]"

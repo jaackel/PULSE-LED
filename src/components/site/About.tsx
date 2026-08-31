@@ -2,7 +2,7 @@ import { Reveal } from "./Reveal";
 
 export function About() {
   return (
-    <section id="sobre" className="relative isolate overflow-hidden py-20 md:py-28">
+    <section id="sobre" className="relative isolate overflow-hidden py-20 md:py-28 scroll-mt-20 md:scroll-mt-24">
       <div
         aria-hidden
         className="absolute top-1/3 left-[-10%] h-96 w-96 rounded-full bg-primary/8 blur-[130px]"

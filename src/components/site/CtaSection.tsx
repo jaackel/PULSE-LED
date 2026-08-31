@@ -5,7 +5,7 @@ import { Reveal } from "./Reveal";
 
 export function CtaSection() {
   return (
-    <section id="contato" className="relative isolate overflow-hidden py-24 md:py-32">
+    <section id="contato" className="relative isolate overflow-hidden py-24 md:py-32 scroll-mt-20 md:scroll-mt-24">
       <div aria-hidden className="liquid-bg" />
       <div
         aria-hidden

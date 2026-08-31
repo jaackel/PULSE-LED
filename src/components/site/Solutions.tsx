@@ -62,7 +62,7 @@ const services = [
 
 export function Solutions() {
   return (
-    <section id="solucoes" className="relative isolate overflow-hidden py-20 md:py-28">
+    <section id="solucoes" className="relative isolate overflow-hidden py-20 md:py-28 scroll-mt-20 md:scroll-mt-24">
       {/* Thinking Dots ocupando a seção inteira, nos valores da doc: cores
           #3a3fff / #0071ff, fundo #0a0a0a e opacidade cheia. */}
       <ThinkingDots background="#0a0a0a" />
