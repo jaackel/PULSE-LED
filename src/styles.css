@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #090d16;
+    --foreground: #f1f5f9;
+    --surface: #0f172a;
+    --surface-2: #1e293b;
+    --border: rgba(255, 255, 255, 0.08);
+    --primary: #2563eb;
+    --primary-glow: #60a5fa;
+    --silver: #94a3b8;
+    --muted-foreground: #94a3b8;
+    --whatsapp: #22c55e;
+    --glow-sm: 0 0 15px rgba(37, 99, 235, 0.35);
+    --glow-md: 0 0 30px rgba(96, 165, 250, 0.45);
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.liquid-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.pixel-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+@keyframes pixelPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pixel-pulse {
+  animation: pixelPulse 4s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatSlower {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: floatSlower 9s ease-in-out infinite;
+}
+
+/* Batida da linha azul do logo: um pico forte, um eco menor, e descanso. */
+/* A linha parte sempre da cor original (brightness 1) e só ganha brilho na
+   batida — nunca fica mais apagada do que a arte. */
+@keyframes logoBeat {
+  0%   { filter: brightness(1); }
+  6%   { filter: brightness(2.4) drop-shadow(0 0 16px rgba(96, 165, 250, 0.6)); }
+  16%  { filter: brightness(1.06); }
+  22%  { filter: brightness(1.85) drop-shadow(0 0 10px rgba(96, 165, 250, 0.42)); }
+  34%  { filter: brightness(1); }
+  100% { filter: brightness(1); }
+}
+
+.animate-logo-beat {
+  animation: logoBeat 1.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logo-beat {
+    animation: none;
+  }
+}
+
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav {
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.glass-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.7s ease;
+}
+
+.glass-sheen:hover::after {
+  left: 150%;
+}
+
+.led-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #60a5fa;
+  box-shadow: 0 0 8px #60a5fa;
+  display: inline-block;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
