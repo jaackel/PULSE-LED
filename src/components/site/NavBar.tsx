@@ -17,23 +17,25 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "glass-nav" : "border-b border-transparent bg-transparent",
-      )}
-    >
-      <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 md:h-20 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 p-4 transition-all duration-500 pointer-events-none">
+      <nav
+        className={cn(
+          "pointer-events-auto mx-auto flex items-center justify-between rounded-full transition-all duration-500 ease-out",
+          scrolled
+            ? "max-w-5xl bg-background/80 backdrop-blur-xl border border-white/10 px-6 py-2.5 shadow-2xl shadow-black/50"
+            : "max-w-7xl bg-transparent border border-transparent px-8 py-4"
+        )}
+      >
         <a href="#inicio" aria-label="Pulse LED Display — início" className="shrink-0">
-          <LogoMark pulse={false} className="w-36 md:w-44" />
+          <LogoMark pulse={false} className={cn("transition-all duration-500", scrolled ? "w-32 md:w-36" : "w-36 md:w-44")} />
         </a>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-7 text-sm font-medium text-muted-foreground lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="glass-sheen relative rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+                className="transition-colors duration-300 hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -42,7 +44,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:block">
-          <GlassButton href={whatsappLink()} external>
+          <GlassButton href={whatsappLink()} external size={scrolled ? "sm" : "default"}>
             <MessageCircle className="h-4 w-4 text-primary-glow" />
             Solicitar orçamento
           </GlassButton>
@@ -53,14 +55,14 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
-          className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface/60 text-foreground backdrop-blur-md lg:hidden"
+          className="grid h-9 w-9 place-items-center rounded-full border border-border bg-surface/60 text-foreground backdrop-blur-md lg:hidden"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
 
       {open && (
-        <div className="glass-panel mx-4 mb-4 rounded-2xl p-4 lg:hidden">
+        <div className="pointer-events-auto glass-panel mx-auto mt-2 max-w-lg rounded-2xl p-4 lg:hidden">
           <ul className="relative flex flex-col">
             {navLinks.map((link) => (
               <li key={link.href}>
