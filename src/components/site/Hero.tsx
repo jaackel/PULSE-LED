@@ -16,13 +16,15 @@ export function Hero() {
       id="inicio"
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-background pb-24 pt-24 supports-[height:100svh]:min-h-[100svh] sm:pb-28 sm:pt-32 md:pb-36 md:pt-36 lg:pb-40 lg:pt-40"
     >
-      {/* Rising Lines: feixes ascendentes + laser de horizonte */}
+      {/* Rising Lines: feixes de laser vibrantes, alta densidade e neon azul elétrico */}
       <RisingLines
-        color="#2563eb"
-        glowColor="#60a5fa"
-        lineCount={65}
-        particleCount={50}
-        speed={1.0}
+        color="#0052ff"
+        glowColor="#00d8ff"
+        lineCount={240}
+        particleCount={80}
+        speed={1.25}
+        centerBias={0.65}
+        bloom={0.6}
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">

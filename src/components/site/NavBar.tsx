@@ -44,7 +44,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:block">
-          <GlassButton href={whatsappLink()} external size={scrolled ? "sm" : "default"}>
+          <GlassButton href={whatsappLink()} external size="md">
             <MessageCircle className="h-4 w-4 text-primary-glow" />
             Solicitar orçamento
           </GlassButton>
