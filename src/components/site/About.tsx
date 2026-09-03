@@ -1,6 +1,9 @@
+import { useI18n } from "@/lib/i18n";
 import { Reveal } from "./Reveal";
 
 export function About() {
+  const { t } = useI18n();
+
   return (
     <section id="sobre" className="relative isolate overflow-hidden py-20 md:py-28 scroll-mt-20 md:scroll-mt-24">
       <div
@@ -11,25 +14,19 @@ export function About() {
         <Reveal>
           <span className="glass-chip">
             <span className="led-dot" />
-            Sobre
+            {t.about.chip}
           </span>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-            Tecnologia, inovação e <span className="text-gradient">visibilidade.</span>
+            {t.about.titleLead} <span className="text-gradient">{t.about.titleAccent}</span>
           </h2>
         </Reveal>
 
         <Reveal delay={120} className="space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-          <p>
-            A Pulse LED Display oferece soluções em comunicação visual digital desenvolvidas para
-            empresas, instituições e espaços que precisam comunicar com impacto.
-          </p>
-          <p>
-            Unimos tecnologia, qualidade e criatividade para entregar experiências visuais modernas e
-            eficientes.
-          </p>
+          <p>{t.about.paragraph1}</p>
+          <p>{t.about.paragraph2}</p>
           <div className="glass-panel rounded-2xl p-5">
             <p className="relative text-sm tracking-[0.24em] text-silver uppercase">
-              Innovation • Impact • Visibility
+              {t.about.tagline}
             </p>
           </div>
         </Reveal>

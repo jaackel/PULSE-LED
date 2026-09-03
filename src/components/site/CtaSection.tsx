@@ -1,9 +1,12 @@
 import { MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/site";
+import { useI18n } from "@/lib/i18n";
 import { GlassButton } from "./GlassButton";
 import { Reveal } from "./Reveal";
 
 export function CtaSection() {
+  const { t } = useI18n();
+
   return (
     <section id="contato" className="relative isolate overflow-hidden py-24 md:py-32 scroll-mt-20 md:scroll-mt-24">
       <div aria-hidden className="liquid-bg" />
@@ -15,15 +18,15 @@ export function CtaSection() {
 
       <Reveal className="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
         <h2 className="text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-          Pronto para <span className="text-gradient">transformar sua comunicação?</span>
+          {t.cta.titleLead} <span className="text-gradient">{t.cta.titleAccent}</span>
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-          Conte para nós o que você precisa e encontre a solução ideal para o seu espaço.
+          {t.cta.description}
         </p>
         <div className="mt-9 flex justify-center">
-          <GlassButton href={whatsappLink()} external size="lg">
+          <GlassButton href={whatsappLink(t.contact.defaultMessage)} external size="lg">
             <MessageCircle className="h-5 w-5 text-primary-glow" />
-            Solicitar orçamento pelo WhatsApp
+            {t.cta.button}
           </GlassButton>
         </div>
       </Reveal>

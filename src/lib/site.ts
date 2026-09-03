@@ -1,15 +1,25 @@
+/** Chaves de tradução (`nav.*` em src/lib/i18n.tsx) casadas com as âncoras da página. */
 export const navLinks = [
-  { label: "Início", href: "#inicio" },
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Projetos", href: "#projetos" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Contato", href: "#contato" },
-];
+  { key: "home", href: "#inicio" },
+  { key: "solutions", href: "#solucoes" },
+  { key: "projects", href: "#projetos" },
+  { key: "about", href: "#sobre" },
+  { key: "contact", href: "#contato" },
+] as const;
 
-export function whatsappLink(text?: string) {
-  const phone = "5511999999999";
-  const message = text
-    ? encodeURIComponent(text)
-    : encodeURIComponent("Olá! Gostaria de solicitar um orçamento para painéis de LED.");
-  return `https://wa.me/${phone}?text=${message}`;
+const PHONE = "5511999999999";
+
+export function whatsappLink(text: string) {
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
 }
+
+export function smsLink(text: string) {
+  // `?&` mantém compatibilidade com iOS e Android
+  return `sms:+${PHONE}?&body=${encodeURIComponent(text)}`;
+}
+
+/** TODO: trocar por "#" pelas URLs reais assim que as contas forem criadas. */
+export const socialLinks = {
+  instagram: "https://www.instagram.com/pulseled.usa/",
+  facebook: "https://www.facebook.com/profile.php?id=61593736915705",
+};

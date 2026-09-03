@@ -20,6 +20,7 @@ export default {
         silver: "#94a3b8",
         "muted-foreground": "#94a3b8",
         whatsapp: "#22c55e",
+        facebook: "#1877f2",
       },
       spacing: {
         '4.5': '1.125rem',

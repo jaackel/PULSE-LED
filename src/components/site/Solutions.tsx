@@ -1,66 +1,16 @@
-import { ArrowRight, Monitor, LayoutGrid, UtensilsCrossed, Church, Film, Settings2 } from "lucide-react";
-import ledPanel from "@/assets/service-led-panel.jpg";
-import videoWall from "@/assets/service-videowall.jpg";
-import menuBoard from "@/assets/service-menuboard.jpg";
-import church from "@/assets/service-church.jpg";
-import videoAds from "@/assets/service-video-ads.jpg";
-import software from "@/assets/service-software.jpg";
-import { whatsappLink } from "@/lib/site";
+import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { solutions } from "@/lib/solutions";
+import { useI18n } from "@/lib/i18n";
 import { Reveal } from "./Reveal";
 import { ThinkingDots } from "./ThinkingDots";
-
-const services = [
-  {
-    icon: Monitor,
-    title: "Painéis de LED Digital",
-    description:
-      "Painéis de LED de alta qualidade para comunicação visual, publicidade, eventos e ambientes corporativos.",
-    image: ledPanel,
-    alt: "Módulo de painel de LED profissional com pixels azuis em close-up",
-  },
-  {
-    icon: LayoutGrid,
-    title: "Video Wall",
-    description:
-      "Soluções de Video Wall para criar grandes experiências visuais em ambientes corporativos, comerciais e institucionais.",
-    image: videoWall,
-    alt: "Video wall corporativo formado por várias telas exibindo uma composição azul",
-  },
-  {
-    icon: UtensilsCrossed,
-    title: "Menu Board Digital",
-    description:
-      "Menus digitais modernos para restaurantes, lanchonetes, cafeterias e estabelecimentos que desejam uma comunicação mais dinâmica.",
-    image: menuBoard,
-    alt: "Telas de menu digital acima do balcão de um restaurante moderno",
-  },
-  {
-    icon: Church,
-    title: "Painéis de LED para Igrejas",
-    description:
-      "Tecnologia visual para igrejas, proporcionando maior impacto durante cultos, eventos e apresentações.",
-    image: church,
-    alt: "Grande painel de LED instalado em auditório de igreja moderna",
-  },
-  {
-    icon: Film,
-    title: "Criação de Anúncios em Vídeo",
-    description:
-      "Produção de conteúdos em vídeo para painéis de LED e sinalização digital, criando anúncios mais atrativos e envolventes.",
-    image: videoAds,
-    alt: "Tela de LED exibindo conteúdo publicitário em movimento",
-  },
-  {
-    icon: Settings2,
-    title: "Software de Gerenciamento Remoto",
-    description:
-      "Gerencie conteúdos e informações das suas telas de forma prática, flexível e remota.",
-    image: software,
-    alt: "Dashboard de gerenciamento remoto de telas em um monitor",
-  },
-];
+import VariableProximity from "./VariableProximity";
 
 export function Solutions() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
+
   return (
     <section id="solucoes" className="relative isolate overflow-hidden py-20 md:py-28 scroll-mt-20 md:scroll-mt-24">
       {/* Thinking Dots ocupando a seção inteira, nos valores da doc: cores
@@ -78,29 +28,38 @@ export function Solutions() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent"
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
+      <div ref={containerRef} className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
         <Reveal className="max-w-3xl">
           <span className="glass-chip">
             <span className="led-dot" />
-            Soluções
+            {t.solutions.chip}
           </span>
           <h2 className="mt-5 text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-            Soluções que dão vida à sua comunicação
+            <VariableProximity
+              label={t.solutions.title}
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 800, 'opsz' 40"
+              containerRef={containerRef}
+              radius={150}
+              falloff="gaussian"
+              className="text-foreground"
+            />
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Do impacto de um grande painel de LED à praticidade do gerenciamento remoto, criamos
-            soluções completas para transformar a forma como sua empresa se comunica.
+            {t.solutions.description}
           </p>
         </Reveal>
 
         <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <Reveal as="li" key={service.title} delay={index * 70} className="h-full">
+          {solutions.map((solution, index) => {
+            const copy = t.solutions.items[solution.id];
+            return (
+            <Reveal as="li" key={solution.id} delay={index * 70} className="h-full">
               <article className="glass-panel glass-sheen group h-full rounded-2xl transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/45 hover:[box-shadow:var(--glow-md)]">
-                <div className="relative aspect-16/10 overflow-hidden">
+                <Link to={`/solucoes/${solution.slug}`} className="relative block aspect-16/10 overflow-hidden">
                   <img
-                    src={service.image}
-                    alt={service.alt}
+                    src={solution.cover}
+                    alt={copy.alt}
                     loading="lazy"
                     width={1024}
                     height={768}
@@ -110,29 +69,28 @@ export function Solutions() {
                   <span className="absolute top-3 right-4 text-xs font-semibold tracking-[0.2em] text-muted-foreground">
                     0{index + 1}
                   </span>
-                </div>
+                </Link>
 
                 <div className="relative p-6">
                   <span className="inline-grid h-10 w-10 place-items-center rounded-xl border border-primary/30 bg-surface-2/70 backdrop-blur-md transition-all duration-500 group-hover:border-primary/60 group-hover:[box-shadow:var(--glow-sm)]">
-                    <service.icon className="h-5 w-5 text-primary-glow transition-transform duration-500 group-hover:scale-110" />
+                    <solution.icon className="h-5 w-5 text-primary-glow transition-transform duration-500 group-hover:scale-110" />
                   </span>
-                  <h3 className="mt-4 text-lg font-bold text-foreground">{service.title}</h3>
+                  <h3 className="mt-4 text-lg font-bold text-foreground">{copy.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
+                    {copy.description}
                   </p>
-                  <a
-                    href={whatsappLink(`Olá! Gostaria de saber mais sobre ${service.title}.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to={`/solucoes/${solution.slug}`}
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-glow transition-colors hover:text-foreground"
                   >
-                    Saiba mais
+                    {t.solutions.learnMore}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </a>
+                  </Link>
                 </div>
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </ul>
       </div>
     </section>

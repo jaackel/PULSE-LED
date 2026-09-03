@@ -1,14 +1,17 @@
 import impactImage from "@/assets/impact-facade.jpg";
+import { useI18n } from "@/lib/i18n";
 import { Reveal } from "./Reveal";
 
 export function Impact() {
+  const { t } = useI18n();
+
   return (
     <section className="relative isolate overflow-hidden py-16 md:py-24">
       <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
         <Reveal className="relative overflow-hidden rounded-[2rem] border border-border">
           <img
             src={impactImage}
-            alt="Fachada comercial noturna coberta por grandes painéis de LED com iluminação azul"
+            alt={t.impact.imageAlt}
             loading="lazy"
             width={1600}
             height={912}
@@ -25,13 +28,13 @@ export function Impact() {
               <div className="relative">
                 <span className="glass-chip">
                   <span className="led-dot" />
-                  Impacto
+                  {t.impact.chip}
                 </span>
                 <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-                  Sua mensagem. <span className="text-gradient">Em grande escala.</span>
+                  {t.impact.titleLead} <span className="text-gradient">{t.impact.titleAccent}</span>
                 </h2>
                 <p className="mt-4 text-base text-muted-foreground md:text-lg">
-                  Transformamos tecnologia em visibilidade para sua marca.
+                  {t.impact.description}
                 </p>
               </div>
             </div>
