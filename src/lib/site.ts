@@ -7,7 +7,7 @@ export const navLinks = [
   { key: "contact", href: "#contato" },
 ] as const;
 
-const PHONE = "5511999999999";
+const PHONE = "15616435045";
 
 export function whatsappLink(text: string) {
   return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
